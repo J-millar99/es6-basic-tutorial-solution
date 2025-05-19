@@ -129,6 +129,9 @@ __webpack_require__.r(__webpack_exports__);
 //import * as mortgage from './mortgage'; 
 
 //2) calculateAmortization 함수만 import
+//import { calculateAmortization } from "./mortgage";
+
+//3) calculateAmortization 함수를 as 키워드로 변경하여 import
 
 document.getElementById('calcBtn').addEventListener('click', function () {
   var principal = document.getElementById("principal").value;
@@ -141,10 +144,13 @@ document.getElementById('calcBtn').addEventListener('click', function () {
   //let { monthlyPayment, monthlyRate, amortization } = mortgage.calculateAmortization(principal, years, rate);
 
   // 2)
-  var _calculateAmortizatio = (0,_mortgage__WEBPACK_IMPORTED_MODULE_0__.calculateAmortization)(principal, years, rate),
-    monthlyPayment = _calculateAmortizatio.monthlyPayment,
-    monthlyRate = _calculateAmortizatio.monthlyRate,
-    amortization = _calculateAmortizatio.amortization;
+  //let { monthlyPayment, monthlyRate, amortization } = calculateAmortization(principal, years, rate);
+
+  // 3)
+  var _calcAmortization = (0,_mortgage__WEBPACK_IMPORTED_MODULE_0__.calculateAmortization)(principal, years, rate),
+    monthlyPayment = _calcAmortization.monthlyPayment,
+    monthlyRate = _calcAmortization.monthlyRate,
+    amortization = _calcAmortization.amortization;
   document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
   document.getElementById("monthlyRate").innerHTML = (monthlyRate * 100).toFixed(2);
   amortization.forEach(function (month) {
