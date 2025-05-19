@@ -8,8 +8,10 @@
 //import { calculateAmortization as calcAmortization } from "./mortgage";
 
 //Default export 일 경우 as 키워드 없이 함수명을 변경하여 import 가능함
-import calcAmortization from "./mortgage";
+//import calcAmortization from "./mortgage";
 
+//Mortgage 클래스 import 하기
+import Mortgage from "./mortgageClass";
 
 document.getElementById('calcBtn').addEventListener('click', () => {
     let principal = document.getElementById("principal").value;
@@ -25,9 +27,14 @@ document.getElementById('calcBtn').addEventListener('click', () => {
     //let { monthlyPayment, monthlyRate, amortization } = calculateAmortization(principal, years, rate);
 
     // 3)
-    let { monthlyPayment, monthlyRate, amortization } = calcAmortization(principal, years, rate);
+    //let { monthlyPayment, monthlyRate, amortization } = calcAmortization(principal, years, rate);
+
+    //객체생성성
+    const mortgage = new Mortgage(principal, years, rate);
+    //클래스로 부터 Destructuring Assignment 하기
+    const { monthlyPayment, amortization } = mortgage;
 
     document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
-    document.getElementById("monthlyRate").innerHTML = (monthlyRate * 100).toFixed(2);
+    document.getElementById("monthlyRate").innerHTML = (rate * 100).toFixed(2);
     amortization.forEach(month => console.log(month));
 });

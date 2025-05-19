@@ -2,66 +2,68 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./js/mortgage.js":
-/*!************************!*\
-  !*** ./js/mortgage.js ***!
-  \************************/
+/***/ "./js/mortgageClass.js":
+/*!*****************************!*\
+  !*** ./js/mortgageClass.js ***!
+  \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Mortgage)
 /* harmony export */ });
-//Named export
-//내부에서 만 호출되어서 export 구문을 제거함함
-var calculateMonthlyPayment = function calculateMonthlyPayment(principal, years, rate) {
-  var monthlyRate = 0;
-  if (rate) {
-    monthlyRate = rate / 100 / 12;
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+var Mortgage = /*#__PURE__*/function () {
+  //생성자
+  function Mortgage(principal, years, rate) {
+    _classCallCheck(this, Mortgage);
+    this.principal = principal;
+    this.years = years;
+    this.rate = rate;
   }
-  var monthlyPayment = principal * monthlyRate / (1 - Math.pow(1 / (1 + monthlyRate), years * 12));
-  return {
-    principal: principal,
-    years: years,
-    rate: rate,
-    monthlyPayment: monthlyPayment,
-    monthlyRate: monthlyRate
-  };
-};
 
-//Named export
-//default export 로 변경함
-var calculateAmortization = function calculateAmortization(principal, years, rate) {
-  var _calculateMonthlyPaym = calculateMonthlyPayment(principal, years, rate),
-    monthlyRate = _calculateMonthlyPaym.monthlyRate,
-    monthlyPayment = _calculateMonthlyPaym.monthlyPayment;
-  var balance = principal;
-  var amortization = [];
-  for (var y = 0; y < years; y++) {
-    var interestY = 0; //Interest payment for year y
-    var principalY = 0; //Principal payment for year y
-    for (var m = 0; m < 12; m++) {
-      var interestM = balance * monthlyRate; //Interest payment for month m
-      var principalM = monthlyPayment - interestM; //Principal payment for month m
-      interestY = interestY + interestM;
-      principalY = principalY + principalM;
-      balance = balance - principalM;
+  //getter 함수
+  return _createClass(Mortgage, [{
+    key: "monthlyPayment",
+    get: function get() {
+      var monthlyRate = this.rate / 100 / 12;
+      return this.principal * monthlyRate / (1 - Math.pow(1 / (1 + monthlyRate), this.years * 12));
     }
-    amortization.push({
-      principalY: principalY,
-      interestY: interestY,
-      balance: balance
-    });
-  }
-  return {
-    monthlyPayment: monthlyPayment,
-    monthlyRate: monthlyRate,
-    amortization: amortization
-  };
-};
 
-//Default export 로 변경함
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calculateAmortization);
+    //getter 함수
+  }, {
+    key: "amortization",
+    get: function get() {
+      var monthlyPayment = this.monthlyPayment;
+      var monthlyRate = this.rate / 100 / 12;
+      var balance = this.principal;
+      var amortization = [];
+      for (var y = 0; y < this.years; y++) {
+        var interestY = 0;
+        var principalY = 0;
+        for (var m = 0; m < 12; m++) {
+          var interestM = balance * monthlyRate;
+          var principalM = monthlyPayment - interestM;
+          interestY = interestY + interestM;
+          principalY = principalY + principalM;
+          balance = balance - principalM;
+        }
+        amortization.push({
+          principalY: principalY,
+          interestY: interestY,
+          balance: balance
+        });
+      }
+      return amortization;
+    }
+  }]);
+}(); //class
+
 
 /***/ })
 
@@ -128,7 +130,7 @@ var __webpack_exports__ = {};
   !*** ./js/main.js ***!
   \********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mortgage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mortgage */ "./js/mortgage.js");
+/* harmony import */ var _mortgageClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mortgageClass */ "./js/mortgageClass.js");
 //1) * 를 사용하여 모든 함수를 import
 //import * as mortgage from './mortgage'; 
 
@@ -139,6 +141,9 @@ __webpack_require__.r(__webpack_exports__);
 //import { calculateAmortization as calcAmortization } from "./mortgage";
 
 //Default export 일 경우 as 키워드 없이 함수명을 변경하여 import 가능함
+//import calcAmortization from "./mortgage";
+
+//Mortgage 클래스 import 하기
 
 document.getElementById('calcBtn').addEventListener('click', function () {
   var principal = document.getElementById("principal").value;
@@ -154,12 +159,15 @@ document.getElementById('calcBtn').addEventListener('click', function () {
   //let { monthlyPayment, monthlyRate, amortization } = calculateAmortization(principal, years, rate);
 
   // 3)
-  var _calcAmortization = (0,_mortgage__WEBPACK_IMPORTED_MODULE_0__["default"])(principal, years, rate),
-    monthlyPayment = _calcAmortization.monthlyPayment,
-    monthlyRate = _calcAmortization.monthlyRate,
-    amortization = _calcAmortization.amortization;
+  //let { monthlyPayment, monthlyRate, amortization } = calcAmortization(principal, years, rate);
+
+  //객체생성성
+  var mortgage = new _mortgageClass__WEBPACK_IMPORTED_MODULE_0__["default"](principal, years, rate);
+  //클래스로 부터 Destructuring Assignment 하기
+  var monthlyPayment = mortgage.monthlyPayment,
+    amortization = mortgage.amortization;
   document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
-  document.getElementById("monthlyRate").innerHTML = (monthlyRate * 100).toFixed(2);
+  document.getElementById("monthlyRate").innerHTML = (rate * 100).toFixed(2);
   amortization.forEach(function (month) {
     return console.log(month);
   });
