@@ -10,10 +10,10 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   calculateAmortization: () => (/* binding */ calculateAmortization),
-/* harmony export */   calculateMonthlyPayment: () => (/* binding */ calculateMonthlyPayment)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 //Named export
+//내부에서 만 호출되어서 export 구문을 제거함함
 var calculateMonthlyPayment = function calculateMonthlyPayment(principal, years, rate) {
   var monthlyRate = 0;
   if (rate) {
@@ -30,6 +30,7 @@ var calculateMonthlyPayment = function calculateMonthlyPayment(principal, years,
 };
 
 //Named export
+//default export 로 변경함
 var calculateAmortization = function calculateAmortization(principal, years, rate) {
   var _calculateMonthlyPaym = calculateMonthlyPayment(principal, years, rate),
     monthlyRate = _calculateMonthlyPaym.monthlyRate,
@@ -58,6 +59,9 @@ var calculateAmortization = function calculateAmortization(principal, years, rat
     amortization: amortization
   };
 };
+
+//Default export 로 변경함
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calculateAmortization);
 
 /***/ })
 

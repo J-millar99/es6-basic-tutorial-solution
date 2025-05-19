@@ -5,7 +5,11 @@
 //import { calculateAmortization } from "./mortgage";
 
 //3) calculateAmortization 함수를 as 키워드로 변경하여 import
-import { calculateAmortization as calcAmortization } from "./mortgage";
+//import { calculateAmortization as calcAmortization } from "./mortgage";
+
+//Default export 일 경우 as 키워드 없이 함수명을 변경하여 import 가능함
+import calcAmortization from "./mortgage";
+
 
 document.getElementById('calcBtn').addEventListener('click', () => {
     let principal = document.getElementById("principal").value;
