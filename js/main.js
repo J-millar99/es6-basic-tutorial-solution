@@ -2,7 +2,10 @@
 //import * as mortgage from './mortgage'; 
 
 //2) calculateAmortization 함수만 import
-import { calculateAmortization } from "./mortgage";
+//import { calculateAmortization } from "./mortgage";
+
+//3) calculateAmortization 함수를 as 키워드로 변경하여 import
+import { calculateAmortization as calcAmortization } from "./mortgage";
 
 document.getElementById('calcBtn').addEventListener('click', () => {
     let principal = document.getElementById("principal").value;
@@ -15,7 +18,10 @@ document.getElementById('calcBtn').addEventListener('click', () => {
     //let { monthlyPayment, monthlyRate, amortization } = mortgage.calculateAmortization(principal, years, rate);
 
     // 2)
-    let { monthlyPayment, monthlyRate, amortization } = calculateAmortization(principal, years, rate);
+    //let { monthlyPayment, monthlyRate, amortization } = calculateAmortization(principal, years, rate);
+
+    // 3)
+    let { monthlyPayment, monthlyRate, amortization } = calcAmortization(principal, years, rate);
 
     document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
     document.getElementById("monthlyRate").innerHTML = (monthlyRate * 100).toFixed(2);

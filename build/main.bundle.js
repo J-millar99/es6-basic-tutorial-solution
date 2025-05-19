@@ -125,6 +125,10 @@ var __webpack_exports__ = {};
   \********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mortgage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mortgage */ "./js/mortgage.js");
+//1) * 를 사용하여 모든 함수를 import
+//import * as mortgage from './mortgage'; 
+
+//2) calculateAmortization 함수만 import
 
 document.getElementById('calcBtn').addEventListener('click', function () {
   var principal = document.getElementById("principal").value;
@@ -133,10 +137,14 @@ document.getElementById('calcBtn').addEventListener('click', function () {
 
   // let monthlyPayment = calculateMonthlyPayment(principal, years, rate);
   //let { monthlyPayment, monthlyRate } = calculateMonthlyPayment(principal, years, rate);
-  var _mortgage$calculateAm = _mortgage__WEBPACK_IMPORTED_MODULE_0__.calculateAmortization(principal, years, rate),
-    monthlyPayment = _mortgage$calculateAm.monthlyPayment,
-    monthlyRate = _mortgage$calculateAm.monthlyRate,
-    amortization = _mortgage$calculateAm.amortization;
+  // 1)
+  //let { monthlyPayment, monthlyRate, amortization } = mortgage.calculateAmortization(principal, years, rate);
+
+  // 2)
+  var _calculateAmortizatio = (0,_mortgage__WEBPACK_IMPORTED_MODULE_0__.calculateAmortization)(principal, years, rate),
+    monthlyPayment = _calculateAmortizatio.monthlyPayment,
+    monthlyRate = _calculateAmortizatio.monthlyRate,
+    amortization = _calculateAmortizatio.amortization;
   document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
   document.getElementById("monthlyRate").innerHTML = (monthlyRate * 100).toFixed(2);
   amortization.forEach(function (month) {
