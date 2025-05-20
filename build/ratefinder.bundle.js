@@ -4797,7 +4797,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rate_service_mock__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rate-service-mock */ "./js/rate-service-mock.js");
 
-_rate_service_mock__WEBPACK_IMPORTED_MODULE_0__.findAll().then(function (rates) {
+_rate_service_mock__WEBPACK_IMPORTED_MODULE_0__.findAll().then(function (res) {
+  return res.data;
+}).then(function (rates) {
   var html = '';
   rates.forEach(function (rate) {
     return html += "<tr><td>".concat(rate.name, "</td><td>").concat(rate.years, "</td><td>").concat(rate.rate, "%</td></tr>");
