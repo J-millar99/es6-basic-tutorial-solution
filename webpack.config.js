@@ -29,17 +29,19 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-            template: './index.html',
-            filename: 'index.html',
-            chunks: ['app']
-        })
+      template: './index.html',
+      filename: 'index.html',
+      chunks: ['app']
+    })
   ], //plugins
   stats: {
     colors: true
   },
   devServer: {
     port: 9000,
-    open: true
+    open: true,
+    hot: false,
+    liveReload: true,
   },
   devtool: 'source-map',
   mode: 'development'
