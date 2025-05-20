@@ -168,10 +168,12 @@ document.getElementById('calcBtn').addEventListener('click', function () {
     amortization = mortgage.amortization;
   document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
   document.getElementById("monthlyRate").innerHTML = (rate * 100).toFixed(2);
-  amortization.forEach(function (month) {
-    return console.log(month);
+  var html = "";
+  mortgage.amortization.forEach(function (year, index) {
+    return html += "\n       <tr>\n           <td>".concat(index + 1, "</td>\n           <td class=\"currency\">").concat(Math.round(year.principalY), "</td>\n           <td class=\"stretch\">\n               <div class=\"flex\">\n                   <div class=\"bar principal\"\n                        style=\"flex:").concat(year.principalY, ";-webkit-flex:").concat(year.principalY, "\">\n                   </div>\n                   <div class=\"bar interest\"\n                        style=\"flex:").concat(year.interestY, ";-webkit-flex:").concat(year.interestY, "\">\n                   </div>\n               </div>\n           </td>\n           <td class=\"currency left\">").concat(Math.round(year.interestY), "</td>\n           <td class=\"currency\">").concat(Math.round(year.balance), "</td>\n       </tr>\n   ");
   });
-});
+  document.getElementById("amortization").innerHTML = html;
+}); //calcBtn click 핸들러 함수
 })();
 
 /******/ })()
