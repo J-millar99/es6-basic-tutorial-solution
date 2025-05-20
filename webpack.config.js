@@ -32,9 +32,9 @@ module.exports = {
     colors: true
   },
   devServer: {
-        port: 9000,
-        open: true
-    },
+    port: 9000,
+    open: true
+  },
   devtool: 'source-map',
   mode: 'development'
 };
