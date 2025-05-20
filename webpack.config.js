@@ -1,5 +1,6 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   //entry: './js/main.js',
@@ -26,7 +27,12 @@ module.exports = {
     ]
   }, //module
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+            template: './index.html',
+            filename: 'index.html',
+            chunks: ['app']
+        })
   ], //plugins
   stats: {
     colors: true
