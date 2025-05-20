@@ -13,6 +13,9 @@
 //Mortgage 클래스 import 하기
 import Mortgage from "./mortgageClass";
 
+//css file을 import 하기
+import '../css/styles.css';
+
 document.getElementById('calcBtn').addEventListener('click', () => {
     let principal = document.getElementById("principal").value;
     let years = document.getElementById("years").value;
