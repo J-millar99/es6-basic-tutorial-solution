@@ -23,8 +23,12 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
-      }
-    ]
+      }, //babel-loader
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      }, //style-loader
+    ] //rules    
   }, //module
   plugins: [
     new CleanWebpackPlugin(),
