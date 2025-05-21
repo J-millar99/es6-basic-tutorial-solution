@@ -32,7 +32,7 @@ document.getElementById('calcBtn').addEventListener('click', () => {
     // 3)
     //let { monthlyPayment, monthlyRate, amortization } = calcAmortization(principal, years, rate);
 
-    //객체생성성
+    //객체생성 
     const mortgage = new Mortgage(principal, years, rate);
     //클래스로 부터 Destructuring Assignment 하기
     const { monthlyPayment, amortization } = mortgage;

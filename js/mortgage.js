@@ -1,5 +1,5 @@
 //Named export
-//내부에서 만 호출되어서 export 구문을 제거함함
+//내부에서 만 호출되어서 export 구문을 제거함
 let calculateMonthlyPayment = (principal, years, rate) => {
    let monthlyRate = 0;
    if (rate) {
